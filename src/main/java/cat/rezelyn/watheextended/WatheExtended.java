@@ -239,7 +239,10 @@ public class WatheExtended implements ModInitializer {
             catch (Throwable ignored) {}
             cat.rezelyn.watheextended.modifiers.AdaptiveModifier.clearAll();
             cat.rezelyn.watheextended.modifiers.TaxedModifier.clearAll();
-            if (world instanceof ServerWorld sw) FeatherModifierFix.applyOnGameStart(sw);
+            if (world instanceof ServerWorld sw) {
+                FeatherModifierFix.applyOnGameStart(sw);
+                for (ServerPlayerEntity player : sw.getPlayers()) PlayerItemManager.giveGuidebook(player);
+            }
             if (cat.rezelyn.watheextended.api.stupidexpress.ConfigHelper.isLoaded()) {
                 try {
                     WatheExtendedWorldComponent wec = WatheExtendedWorldComponent.KEY.get(world);
